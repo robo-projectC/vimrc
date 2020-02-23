@@ -1,17 +1,23 @@
+""ESCはいらない子 →ctrl-[
+""BSはいらない子 → ctrl-h
+""Tabキーはいらない子 → ctrl-i
+""Enterはいらない子 → ctrl-m
+""3zfj 3行折りたたむ
 nmap ,v :edit $MYVIMRC<CR>   "自分のvimrcへ
-"set paste "上手くペーストできないときはコマンドモードに打つ
+"set paste
 set clipboard+=unnamed
 set wildmode=longest:full,full
+""set noautoindent          "改行時に前の行のインデントを計測
 set autoindent          "改行時に前の行のインデントを計測
-"set smartindent         "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-"set cindent             "Cプログラムファイルの自動インデントを始める
-"set smarttab            "新しい行を作った時に高度な自動インデントを行う
-"set expandtab           "タブ入力を複数の空白に置き換える
-""set clipboard=unnamed,autoselect
-
+""set smartindent         "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+""set cindent             "Cプログラムファイルの自動インデントを始める
+""set smarttab            "新しい行を作った時に高度な自動インデントを行う
+""set expandtab           "タブ入力を複数の空白に置き換える
+""""set clipboard=unnamed,autoselect
+""
 set tabstop=4           "タブを含むファイルを開いた際, タブを何文字の空白に変換するか
 set shiftwidth=4        "自動インデントで入る空白数
-"set softtabstop=0       "キーボードから入るタブの数
+""set softtabstop=0       "キーボードから入るタブの数
 
 autocmd InsertCharPre FileType * <C-p><CR>
 
@@ -22,19 +28,16 @@ if has('autocmd')
 endif
 
 
-
 " 画面上でタブ文字が占める幅
 " set tabstop=2
 """ set shiftwidth=4
 "set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 "set columns=150
 "set lines=90
-""ESCはいらない子 →ctrl-[
-""BSはいらない子 → ctrl-h
-""Tabキーはいらない子 → ctrl-i
-""Enterはいらない子 → ctrl-m
 inoremap <C-c> <Esc>
-vnoremap <C-V> <S-insert>
+""クリップボード連携
+""nnoremap <C-^V> "*p
+nnoremap p "*p
 vnoremap <C-C> <C-insert>
 nnoremap s <Nop>
 tnoremap <C-d> <C-W>w
@@ -48,11 +51,11 @@ inoremap <C-b> <Left>
 ""inoremap ^[OA <Up>
 ""inoremap ^[OB <Down>
 inoremap { {}<LEFT>
-inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
+inoremap < <><LEFT>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-n> <Down>
@@ -199,5 +202,4 @@ for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
 endfor
 
 imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
-
 
